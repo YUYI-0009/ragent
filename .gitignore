@@ -46,7 +46,10 @@ resources/docker/graphrag/.env
 
 ### Tmp Out ###
 .output/
+
+### Local Only ###
 docs/temp
+CLAUDE.md
 .claude/
 
 ### Regression artifacts ###
