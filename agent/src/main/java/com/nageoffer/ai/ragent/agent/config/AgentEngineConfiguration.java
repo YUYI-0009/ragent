@@ -22,12 +22,15 @@ import com.nageoffer.ai.ragent.agent.dao.mapper.AgentStateMapper;
 import com.nageoffer.ai.ragent.agent.state.PgAgentStateStore;
 import com.nageoffer.ai.ragent.infra.config.AIModelProperties;
 import com.nageoffer.ai.ragent.infra.enums.ModelProvider;
+import io.agentscope.core.model.transport.HttpTransportConfig;
+import io.agentscope.core.model.transport.OkHttpTransport;
 import io.agentscope.extensions.model.openai.OpenAIChatModel;
 import io.agentscope.extensions.model.openai.compat.deepseek.DeepSeekFormatter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.Duration;
 import java.util.Map;
 
 /**
@@ -58,6 +61,19 @@ public class AgentEngineConfiguration {
             throw new IllegalStateException("供应商缺少 url 或 endpoints.chat: " + chat.getProvider());
         }
 
+        // Agent 通道显式使用 OkHttp 连接池。
+        // JDK HttpClient 的 HTTP/2 长连接在透明代理后会被静默黑洞，而 JDK 17 没有空闲淘汰，
+        // 表现为只收到 meta 后长时间阻塞；OkHttp 按 keepAliveDuration 淘汰空闲连接并支持读超时。
+        HttpTransportConfig transportConfig = HttpTransportConfig.builder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .readTimeout(Duration.ofSeconds(120))
+                .writeTimeout(Duration.ofSeconds(30))
+                .responseTimeout(Duration.ofMinutes(5))
+                .streamIdleTimeout(Duration.ofMinutes(5))
+                .maxIdleConnections(4)
+                .keepAliveDuration(Duration.ofSeconds(30))
+                .build();
+
         OpenAIChatModel.Builder builder = OpenAIChatModel.builder()
                 .baseUrl(provider.getUrl())
                 .endpointPath(endpointPath)
@@ -65,7 +81,8 @@ public class AgentEngineConfiguration {
                 .modelName(chat.getModel())
                 .stream(true)
                 // 兼容端点普遍无法同时处理 response_format 与工具调用，统一走 generate_response 兜底
-                .nativeStructuredOutputWithTools(false);
+                .nativeStructuredOutputWithTools(false)
+                .httpTransport(new OkHttpTransport(transportConfig));
         applyProviderFormatter(builder, chat.getProvider());
         return builder.build();
     }
