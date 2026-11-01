@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { appUrl } from "@/lib/appPath";
 import { AgentTurnItem } from "@/components/agent/AgentTurn";
 import { listSampleQuestions } from "@/services/sampleQuestionService";
 import { useAgentChatStore } from "@/stores/agentChatStore";
@@ -162,7 +163,7 @@ function AgentSampleQuestions() {
                   ；也可以
                   <a
                     className="agent-empty-blank-link"
-                    href="/admin/sample-questions"
+                    href={appUrl("admin/sample-questions")}
                     target="_blank"
                     rel="noreferrer"
                   >

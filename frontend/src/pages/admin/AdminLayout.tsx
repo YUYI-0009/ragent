@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+
+import { appUrl } from "@/lib/appPath";
 import {
   Bot,
   ChevronDown,
@@ -705,7 +707,7 @@ export function AdminLayout() {
               <Button
                 variant="outline"
                 className="hidden items-center gap-2 sm:inline-flex"
-                onClick={() => window.open("/chat", "_blank")}
+                onClick={() => window.open(appUrl("chat"), "_blank")}
               >
                 <MessageSquare className="h-4 w-4" />
                 返回聊天

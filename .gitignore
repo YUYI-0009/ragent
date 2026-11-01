@@ -55,3 +55,5 @@ CLAUDE.md
 ### Regression artifacts ###
 # Local reports, credentials, logs, snapshots and compiled CLI classes.
 /resources/regression/*/artifacts/
+
+.npm/

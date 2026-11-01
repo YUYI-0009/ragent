@@ -1,3 +1,4 @@
+import { appUrl } from "@/lib/appPath";
 import type { SourceRef } from "@/types";
 
 export function normalizeType(sourceType?: string) {
@@ -44,7 +45,7 @@ export function openSource(source: SourceRef) {
     window.open(source.url, "_blank", "noopener,noreferrer");
     return;
   }
-  window.open(`/preview/doc/${source.docId}`, "_blank", "noopener,noreferrer");
+  window.open(appUrl(`preview/doc/${source.docId}`), "_blank", "noopener,noreferrer");
 }
 
 // 网页标题里常见的章节标记 如 ^第8章^

@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
+import { appUrl } from "@/lib/appPath";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -200,7 +201,7 @@ export function AgentSidebar() {
           <button
             type="button"
             className="agent-admin-btn"
-            onClick={() => window.open("/admin", "_blank")}
+            onClick={() => window.open(appUrl("admin"), "_blank")}
           >
             <Settings className="h-3.5 w-3.5" strokeWidth={2} />
             管理后台

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { toast } from "sonner";
 
+import { appUrl } from "@/lib/appPath";
 import { storage } from "@/utils/storage";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
@@ -35,8 +36,8 @@ api.interceptors.response.use(
         const isAuthExpired = typeof message === "string" && message.includes("未登录");
         if (isAuthExpired) {
           storage.clearAuth();
-          if (window.location.pathname !== "/login") {
-            window.location.href = "/login";
+          if (window.location.pathname !== appUrl("login")) {
+            window.location.href = appUrl("login");
           }
         }
         return Promise.reject(new Error(message));
@@ -48,8 +49,8 @@ api.interceptors.response.use(
   (error) => {
     if (error?.response?.status === 401) {
       storage.clearAuth();
-      if (window.location.pathname !== "/login") {
-        window.location.href = "/login";
+      if (window.location.pathname !== appUrl("login")) {
+        window.location.href = appUrl("login");
       }
     }
     const responseData = error?.response?.data;

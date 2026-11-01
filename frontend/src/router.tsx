@@ -1,5 +1,6 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
+import { BASE_PATH } from "@/lib/appPath";
 import { LoginPage } from "@/pages/LoginPage";
 import { EngineGate } from "@/components/common/EngineGate";
 import { ChangeLogsPage } from "@/pages/ChangeLogsPage";
@@ -96,9 +97,9 @@ export const router = createBrowserRouter([
   {
     path: "/change-logs",
     element: (
-      <RequireAuth>
+      <RequireAdmin>
         <ChangeLogsPage />
-      </RequireAuth>
+      </RequireAdmin>
     )
   },
   {
@@ -207,4 +208,6 @@ export const router = createBrowserRouter([
     path: "*",
     element: <NotFoundPage />
   }
-]);
+], {
+  basename: BASE_PATH || "/"
+});
