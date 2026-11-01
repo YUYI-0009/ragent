@@ -17,6 +17,7 @@
 
 package com.nageoffer.ai.ragent.rag.controller;
 
+import cn.dev33.satoken.annotation.SaCheckRole;
 import com.nageoffer.ai.ragent.framework.convention.Result;
 import com.nageoffer.ai.ragent.framework.web.Results;
 import com.nageoffer.ai.ragent.rag.controller.vo.GraphViewVO;
@@ -35,6 +36,7 @@ import java.util.List;
  * <p>
  * 图谱通道未启用时，服务层以业务异常提示，前端据此给出「未启用」引导，路由本身始终存在
  */
+@SaCheckRole("admin")
 @RestController
 @RequestMapping("/admin/kg")
 @RequiredArgsConstructor

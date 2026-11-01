@@ -17,6 +17,7 @@
 
 package com.nageoffer.ai.ragent.rag.controller;
 
+import cn.dev33.satoken.annotation.SaCheckRole;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.nageoffer.ai.ragent.framework.convention.Result;
 import com.nageoffer.ai.ragent.framework.web.Results;
@@ -40,6 +41,7 @@ import java.util.List;
 /**
  * 智能体技能管理控制器
  */
+@SaCheckRole("admin")
 @RestController
 @RequiredArgsConstructor
 public class AgentSkillController {

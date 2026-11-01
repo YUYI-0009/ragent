@@ -17,6 +17,7 @@
 
 package com.nageoffer.ai.ragent.rag.eval;
 
+import cn.dev33.satoken.annotation.SaCheckRole;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.nageoffer.ai.ragent.framework.convention.RetrievedChunk;
@@ -48,6 +49,7 @@ import java.util.stream.Collectors;
 /**
  * 效果评测接口
  */
+@SaCheckRole("admin")
 @RestController
 @RequiredArgsConstructor
 @ConditionalOnProperty(prefix = "ragent.eval", name = "enabled", havingValue = "true")

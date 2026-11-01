@@ -17,6 +17,7 @@
 
 package com.nageoffer.ai.ragent.rag.controller;
 
+import cn.dev33.satoken.annotation.SaCheckRole;
 import com.nageoffer.ai.ragent.framework.convention.Result;
 import com.nageoffer.ai.ragent.framework.web.Results;
 import com.nageoffer.ai.ragent.rag.controller.request.AgentProfileSaveRequest;
@@ -36,6 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 智能体管理控制器
  */
+@SaCheckRole("admin")
 @RestController
 @RequiredArgsConstructor
 public class AgentProfileController {

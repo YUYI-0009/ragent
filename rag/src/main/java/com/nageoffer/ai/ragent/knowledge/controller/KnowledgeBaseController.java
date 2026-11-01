@@ -17,6 +17,7 @@
 
 package com.nageoffer.ai.ragent.knowledge.controller;
 
+import cn.dev33.satoken.annotation.SaCheckRole;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.nageoffer.ai.ragent.knowledge.controller.request.KnowledgeBaseCreateRequest;
 import com.nageoffer.ai.ragent.knowledge.controller.request.KnowledgeBasePageRequest;
@@ -38,6 +39,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 知识库控制器
  * 提供知识库的增删改查等基础操作接口
  */
+@SaCheckRole("admin")
 @RestController
 @RequiredArgsConstructor
 public class KnowledgeBaseController {

@@ -17,6 +17,7 @@
 
 package com.nageoffer.ai.ragent.audit.controller;
 
+import cn.dev33.satoken.annotation.SaCheckRole;
 import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.nageoffer.ai.ragent.audit.controller.request.BizChangeLogPageRequest;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+@SaCheckRole("admin")
 @RestController
 @RequiredArgsConstructor
 public class BizChangeLogController {

@@ -17,6 +17,7 @@
 
 package com.nageoffer.ai.ragent.rag.controller;
 
+import cn.dev33.satoken.annotation.SaCheckRole;
 import com.nageoffer.ai.ragent.rag.controller.request.IntentNodeBatchRequest;
 import com.nageoffer.ai.ragent.rag.controller.request.IntentNodeCreateRequest;
 import com.nageoffer.ai.ragent.rag.controller.vo.IntentNodeTreeVO;
@@ -39,6 +40,7 @@ import java.util.List;
  * 意图树控制器
  * 提供意图节点树的查询、创建、更新和删除功能
  */
+@SaCheckRole("admin")
 @RestController
 @RequiredArgsConstructor
 public class IntentTreeController {

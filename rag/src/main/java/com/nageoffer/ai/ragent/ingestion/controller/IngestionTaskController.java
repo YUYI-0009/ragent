@@ -17,6 +17,7 @@
 
 package com.nageoffer.ai.ragent.ingestion.controller;
 
+import cn.dev33.satoken.annotation.SaCheckRole;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.nageoffer.ai.ragent.ingestion.controller.request.IngestionTaskCreateRequest;
@@ -44,6 +45,7 @@ import java.util.List;
 /**
  * 知识库采集任务控制层
  */
+@SaCheckRole("admin")
 @RestController
 @RequiredArgsConstructor
 @Validated
